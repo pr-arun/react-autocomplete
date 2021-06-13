@@ -1,25 +1,49 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {Multiselect} from './lib';
 
-function App() {
+let superCategories = [
+    {value: 1, label: "PHP"},
+    {value: 2, label: "Laravel"},
+    {value: 3, label: "Angular"},
+    {value: 4, label: "React"}
+];
+
+export default class App extends React.Component {
+   constructor(props) {
+        super(props);
+        this.state = {
+            categories: superCategories,
+            value: 1,
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange = (item) => {
+        console.log(item);
+        let categories =  [
+    {value: 1, label: "PHP"},
+    {value: 2, label: "Laravel"},
+    {value: 3, label: "Angular"},
+];
+        if (item.value == 3) {
+        categories.push({value: 4, label: "4"})
+        }
+    this.setState({
+        categories: categories,
+        value: item.value,
+    });
+    }
+ 
+    render () {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Multiselect
+            placeholder={"Custom placeholder"}
+            data={this.state.categories}
+            value={this.state.value}
+            handleOnChange={this.handleChange}
+        />
     </div>
   );
+    }
 }
-
-export default App;

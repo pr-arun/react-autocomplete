@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {Multiselect} from './lib';
 
 let superCategories = [
@@ -21,17 +20,17 @@ export default class App extends React.Component {
     handleChange = (item) => {
         console.log(item);
         let categories =  [
-    {value: 1, label: "PHP"},
-    {value: 2, label: "Laravel"},
-    {value: 3, label: "Angular"},
-];
+            {value: 1, label: "PHP"},
+            {value: 2, label: "Laravel"},
+            {value: 3, label: "Angular"},
+        ];
         if (item.value == 3) {
-        categories.push({value: 4, label: "4"})
+            categories.push({value: 4, label: "4"})
         }
-    this.setState({
-        categories: categories,
-        value: item.value,
-    });
+        this.setState({
+            categories: categories,
+            value: item.value,
+        });
     }
  
     render () {

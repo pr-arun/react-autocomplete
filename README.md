@@ -1,4 +1,4 @@
-# React-Autocomplte  
+# React-Autocomplete  
 
 This is a simple light weight select component for react. Initially built for use in STEPS Ejyothi.
 

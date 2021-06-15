@@ -19,6 +19,7 @@ export default class Multiselect extends React.Component {
         this.onItemSelect= this.onItemSelect.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.watchForChange = this.watchForChange.bind(this);
+        this.clearResults = this.clearResults.bind(this);
     }
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
@@ -68,6 +69,7 @@ export default class Multiselect extends React.Component {
     }
     handleClick = () => {
         this.setState({
+            data: this.props.data,
             optionExpand: true,
             focuzOptionIndex: 0,
         });
@@ -113,6 +115,18 @@ export default class Multiselect extends React.Component {
             focuzOptionIndex: optionIndex,
         })
     }
+    clearResults = () => {
+        let selectedItem = {};
+        this.setState({
+            selectedItem: selectedItem,
+            optionExpand: false,
+            searchTerm: '',
+        }, function(){
+            if (this.props.handleOnChange) {
+                this.props.handleOnChange(selectedItem);
+            }
+        });
+    }
     render () {
         return (
             <div className="App">
@@ -135,7 +149,7 @@ export default class Multiselect extends React.Component {
                                 onKeyDown={this.handleKeyDown}
                                 id={"search-box"}
                             />
-                            <button class="close-icon" type="reset"></button>
+                            <button onClick={this.clearResults} class="close-icon" type="reset"></button>
                         </div>
                     {(this.state.optionExpand) &&
                     <div id='list' className={'list'}>

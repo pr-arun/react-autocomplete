@@ -20,6 +20,7 @@ export default class Multiselect extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.watchForChange = this.watchForChange.bind(this);
         this.clearResults = this.clearResults.bind(this);
+        this.optionItemHover = this.optionItemHover.bind(this);
     }
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
@@ -127,11 +128,17 @@ export default class Multiselect extends React.Component {
             }
         });
     }
+    optionItemHover = (index) => {
+        this.setState({
+            focuzOptionIndex: index,
+        })
+    }
     render () {
         return (
             <div className="App">
                 <div className={'search-container'} ref={this.wrapperRef}>
                         <div className={'search-right-section'}>
+                            { (typeof this.state.selectedItem !== 'undefined' && typeof this.state.selectedItem.label !== 'undefined') &&
                             <div className={'selected-item'}>
                                 <div className={'selected-item-label'}>
                                     {this.state.selectedItem.label}
@@ -139,6 +146,7 @@ export default class Multiselect extends React.Component {
                                 <div className={'selected-item-cancel'}>
                                 </div>
                             </div>
+                            }
                             <input 
                                 value={this.state.searchTerm}
                                 type="text" 
@@ -156,7 +164,7 @@ export default class Multiselect extends React.Component {
                         {(this.state.data && this.state.data.length) ?
                         <>
                             {this.state.data.map((item,key)=>
-                            <option className={this.state.focuzOptionIndex == key ? "highlight-option options" : "options"}id={key} onClick={()=>this.onItemSelect(item)} value={item.value}>{item.label}</option>
+                            <option onMouseOver={()=>this.optionItemHover(key)} className={this.state.focuzOptionIndex == key ? "highlight-option options" : "options"}id={key} onClick={()=>this.onItemSelect(item)} value={item.value}>{item.label}</option>
                             )
                             }
                         </>

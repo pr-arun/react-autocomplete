@@ -78,6 +78,7 @@ code {
     box-sizing: border-box;
 }
 .search-right-section {
+    min-height: 34px;
     -webkit-align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -177,7 +178,7 @@ margin: 2px;
 	width: 15px;
 	height: 15px;
 	position: absolute;
-	background-color: #FA9595;
+	background-color: lightslategrey;
 	z-index:1;
 	right: 5px;
 	top: 0;
@@ -189,7 +190,6 @@ margin: 2px;
 	color: white;
 	font-weight: normal;
 	font-size: 12px;
-	box-shadow: 0 0 2px #E50F0F;
 	cursor: pointer;
 }
 .no-item-found{

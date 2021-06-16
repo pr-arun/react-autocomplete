@@ -1,6 +1,6 @@
 # React-Autocomplete  
 
-This is a simple light weight select component for react. Initially built for use in STEPS Ejyothi.
+This is a simple light weight autocomplete select component for react. Initially built for use in STEPS Ejyothi.
 
 ## Installation 
 
@@ -36,7 +36,7 @@ export default class App extends React.Component {
                 <Multiselect
                     placeholder={'Search Items'}
                     data={options}
-                    value={selectedOption}
+                    value={selectedItem}
                     handleOnChange={this.handleChange}
                 />
             </div>

@@ -13,18 +13,18 @@
     "search-select",
     "react-autocomplete-npm"
   ],
-  "version": "1.1.5",
+  "version": "2.0.0-beta.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [ "dist", "README.md" ],
   "bundleDependencies": false,
   "deprecated": false,
   "peerDependencies": {
-    "react": "^16.0.0 || ^15.0.0 || ^0.14.0"
+    "react": "^16.0.0 || ^17.0.0 || ^18.14.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "publish:npm": "rm -rf dist && mkdir dist &&  babel ./src/components -d dist --copy-files"
@@ -40,6 +40,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",

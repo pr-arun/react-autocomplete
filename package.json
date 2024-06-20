@@ -13,7 +13,7 @@
     "search-select",
     "react-autocomplete-npm"
   ],
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.2",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "files": [ "dist", "README.md" ],

@@ -133,7 +133,7 @@ export default class Multiselect extends React.Component {
             focuzOptionIndex: index,
         })
     }
-    render () {
+    render () {        
         return (
             <div className="App">
                 <div className={'search-container'} ref={this.wrapperRef}>
@@ -152,7 +152,7 @@ export default class Multiselect extends React.Component {
                                 type="text" 
                                 onClick={this.handleClick} 
                                 onChange={this.handleChange} 
-                                placeholder={this.props.placeholder ? this.props.placeholder : 'Search Items'}
+                                placeholder={(Object.keys(this.state.selectedItem).length === 0) ? (this.props.placeholder ? this.props.placeholder : 'Search Items') : ''}
                                 className={'search-box'}
                                 onKeyDown={this.handleKeyDown}
                                 id={"search-box"}

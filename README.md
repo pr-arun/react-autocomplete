@@ -18,7 +18,7 @@ const options = [
   { vale: 1, label: "Angular" },
   { value: 2, label: "React" },
   { value: 3, label: "View" },
-  { value: 4, label: "Love JS" }
+  { value: 4, label: "LoveJS" }
 ];
 
 function App() {

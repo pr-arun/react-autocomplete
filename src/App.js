@@ -13,21 +13,14 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             categories: superCategories,
-            value: 1,
+            value: {value: 3, label: "Angular"},
         }
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange = (item) => {
-        console.log(item);
-        let categories =  [
-            {value: 1, label: "PHP"},
-            {value: 2, label: "Laravel"},
-            {value: 3, label: "Angular"},
-        ];
-        
         this.setState({
-            categories: categories,
-            value: item.value,
+            //categories: categories,
+            value: item,
         });
     }
  
@@ -39,6 +32,7 @@ export default class App extends React.Component {
             data={this.state.categories}
             value={this.state.value}
             handleOnChange={this.handleChange}
+            isMultiSelect={false}
         />
     </div>
   );

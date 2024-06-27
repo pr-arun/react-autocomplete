@@ -3,7 +3,7 @@ import './styles/style.css';
 
 export default class Multiselect extends React.Component {
     constructor(props) {
-        super(props);        
+        super(props);
         this.state = {
             data: this.props.data,
             optionExpand: false,
@@ -32,17 +32,15 @@ export default class Multiselect extends React.Component {
     }
     componentDidUpdate(prevProps) {
         if (this.state.isMultiSelect) {
-            
+
             if (this.props.value && this.props.value instanceof Array && JSON.stringify(this.props.value) !== JSON.stringify(prevProps.value)) {
-                
                 this.watchForChange();
             }
         } else {
             let prevValue = (prevProps.value && typeof prevProps.value === 'object' && prevProps.value.hasOwnProperty('value')) ? prevProps.value.value : null;
-            if (this.props.value && typeof this.props.value === 'object' && this.props.value.hasOwnProperty('value')) {
-                if (this.props.value.value !== prevValue || JSON.stringify(this.props.data) !== JSON.stringify(prevProps.data)) {
-                    this.watchForChange();
-                }
+            let currentValue = this.props.value && typeof this.props.value === 'object' && this.props.value.hasOwnProperty('value') ? this.props.value.value : null;
+            if (currentValue !== prevValue || JSON.stringify(this.props.data) !== JSON.stringify(prevProps.data)) {
+                this.watchForChange();
             }
         }
     }
@@ -55,26 +53,26 @@ export default class Multiselect extends React.Component {
     }
     watchForChange = () => {
         if (this.props.data) {
-            this.setState({
-                data: this.props.data,
-            });
+            let dataOptions = [...this.props.data];
             if (this.state.isMultiSelect) {
                 let selectedItems = [];
                 if (this.props.value && this.props.value instanceof Array) {
-                    
                     selectedItems = this.props.value.map((item) => {
                         if (item.value) {
                             let index = this.props.data.findIndex(x => x.value === item.value);
                             let res = this.props.data[index];
+                            if (index > -1) {
+                                dataOptions.splice(index, 1)
+                            }
                             if (item) {
                                 return res;
                             }
                         }
                     });
-                    
                 }
                 this.setState({
                     selectedItem: selectedItems,
+                    data: dataOptions
                 })
             }
             else if (this.props.value && this.props.value.value) {
@@ -82,10 +80,16 @@ export default class Multiselect extends React.Component {
                 if (index !== -1) {
                     let item = this.props.data[index];
                     //this.onItemSelect(item);
+                    dataOptions.splice(index, 1)
                     this.setState({
                         selectedItem: item,
+                        data: dataOptions,
                     })
                 }
+            } else {
+                this.setState({
+                    selectedItem: {},
+                })
             }
         }
     }
@@ -104,7 +108,7 @@ export default class Multiselect extends React.Component {
     }
     handleClick = () => {
         this.setState({
-            data: this.props.data,
+            data: this.state.data,
             optionExpand: true,
             focuzOptionIndex: 0,
         });
@@ -151,10 +155,13 @@ export default class Multiselect extends React.Component {
             selectedItem: selectedItem,
             optionExpand: false,
             searchTerm: '',
+            data: this.props.data
         }, function () {
-            if (this.props.handleOnChange) {
+            /*if (this.props.handleOnChange) {
                 this.props.handleOnChange(selectedItem);
-            }
+            } else {
+                // TODO: Handle the exception
+            }*/
         });
     }
     optionItemHover = (index) => {
@@ -162,35 +169,42 @@ export default class Multiselect extends React.Component {
             focuzOptionIndex: index,
         })
     }
-    handleRemoveClick = () => {
-        // TODO: Implement the remove item functionality
+    handleRemoveClick = (value) => {
+        if (this.state.isMultiSelect) {
+            // TODO
+        } else {
+            this.setState({
+                data: this.props.data,
+                optionExpand: false
+            })
+            this.props.handleOnChange({})
+        }
     }
     render() {
-        console.log((typeof this.state.selectedItem !== 'undefined' && this.state.selectedItem instanceof Array && this.state.isMultiSelect));
         return (
             <div className="App">
                 <div className={'search-container'} ref={this.wrapperRef}>
                     <div className={'search-right-section'}>
                         {(typeof this.state.selectedItem !== 'undefined' && this.state.selectedItem instanceof Array && this.state.isMultiSelect) &&
                             <>
-                            {this.state.selectedItem.map((item)=>(
-                             <div className={'selected-item'}>
-                                <div className={'selected-item-label'}>
-                                    {item.label}
-                                </div>
-                                <div className={'selected-item-cancel'} onClick={this.handleRemoveClick}>
-                                    X
-                                </div>
-                            </div>
-                            ))}
-                            </>                            
+                                {this.state.selectedItem.map((item) => (
+                                    <div className={'selected-item'}>
+                                        <div className={'selected-item-label'}>
+                                            {item.label}
+                                        </div>
+                                        <div className={'selected-item-cancel'} onClick={this.handleRemoveClick}>
+                                            X
+                                        </div>
+                                    </div>
+                                ))}
+                            </>
                         }
                         {(typeof this.state.selectedItem !== 'undefined' && typeof this.state.selectedItem.label !== 'undefined' && !this.state.isMultiSelect) &&
                             <div className={'selected-item'}>
                                 <div className={'selected-item-label'}>
                                     {this.state.selectedItem.label}
                                 </div>
-                                <div className={'selected-item-cancel'} onClick={this.handleRemoveClick}>
+                                <div className={'selected-item-cancel'} onClick={() => this.handleRemoveClick(this.state.selectedItem.value)}>
                                     X
                                 </div>
                             </div>

@@ -43,6 +43,7 @@ code {
     border-style: inset;
     border-color: initial;
     border-image: initial;
+    flex: 1;
 }
 .highlight-option {
     background-color: #87b0ef;
@@ -112,6 +113,7 @@ code {
     margin: 2px;
     min-width: 0;
     box-sizing: border-box;
+    flex: 0 0 auto;
 }
 .selected-item-label {
     border-radius: 2px;
@@ -252,4 +254,14 @@ margin: 2px;
   
   .tag:hover::after {
      border-left-color: crimson; 
+  }
+  .selected-item-cancel{
+    border-left: 1px solid lightgray;    
+    align-content: center;    
+    color: orangered;    
+    width: 14px;    
+    text-align: center;
+    font-size: 72%;
+    cursor: pointer;
+    flex: 0 0 auto;
   }

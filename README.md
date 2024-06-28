@@ -2,7 +2,10 @@
 
 This is a simple light weight autocomplete select component for react. Initially built for use in STEPS Ejyothi.
 
-See react-autocomplete-sandbox(https://codesandbox.io/p/sandbox/react-autocomplete-fnyjz8?file=%2Fpackage.json%3A8%2C23) for a live demo
+## Live Demo
+
+Check out the [React Autocomplete Sandbox](https://codesandbox.io/p/sandbox/react-autocomplete-fnyjz8?file=%2Fpackage.json%3A8%2C23) for a live demo.
+
 ## Installation 
 
 ```sh

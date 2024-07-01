@@ -4,7 +4,7 @@ This is a simple light weight autocomplete select component for react. Initially
 
 ## Live Demo
 
-Check out the [React Autocomplete Sandbox](https://codesandbox.io/p/sandbox/react-autocomplete-fnyjz8?file=%2Fpackage.json%3A8%2C23) for a live demo.
+Check out the [React Autocomplete Sandbox](https://codesandbox.io/p/sandbox/react-autocomplete-fnyjz8?file=%2Fsrc%2FApp.js%3A7%2C20) for a live demo.
 
 ## Installation 
 
@@ -28,7 +28,7 @@ const options = [
 function App() {
   const [selectedItem, handleChange] = useState(null);
   return (
-    <div className="App">
+    <div className="react-autocomplete-npm">
       <Multiselect
         placeholder={'Search Items'}
         data={options}
